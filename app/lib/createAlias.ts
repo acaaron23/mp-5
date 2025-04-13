@@ -14,12 +14,12 @@ export default async function createAlias(
     };
 
     if (!url || !alias){
-        throw new Error ("No Url or Alias provided");
+        throw new Error ("No URL or Alias provided");
     }
 
     const checkAlias = await getAlias(alias);
     if (checkAlias){
-        throw new Error ("Alias already exists");
+        throw new Error ("Invalid alias: This alias already exists");
     }
 
     const aliasCollection = await getCollection(ALIAS_COLLECTION);

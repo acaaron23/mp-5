@@ -1,7 +1,11 @@
-import URLForm from "@/app/components/url-form";
+import Header from "@/app/components/Header";
+import URLForm from "@/app/components/URLForm";
 
 export default function Home() {
   return (
-      <URLForm/>
+      <>
+        <Header/>
+        <URLForm/>
+      </>
   );
 }
