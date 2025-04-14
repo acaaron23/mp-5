@@ -22,12 +22,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-red-300`}>
-      {children}
-      </body>
-    </html>
-  );
+    return (
+        <html lang="en">
+            <body className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen bg-gradient-to-b from-red-300 to-blue-300`}>
+                {children}
+            </body>
+        </html>
+    );
 }
