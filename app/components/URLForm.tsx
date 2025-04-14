@@ -13,7 +13,7 @@ export default function UrlForm() {
 
     return (
         <div className="flex flex-col items-center w-full">
-            <h1 className="flex flex-col font-semibold text-5xl mt-10 mb-3">
+            <h1 className="flex flex-col font-semibold text-5xl mt-20 mb-3">
                 URL Shortener
             </h1>
             <h3 className="flex flex-col text-xl text-black mb-5">
