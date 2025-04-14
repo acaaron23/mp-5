@@ -12,11 +12,11 @@ export default function UrlForm() {
     const [shortenedURL, setShortenedURL] = useState("");
 
     return (
-        <div className="flex flex-col items-center bg-green-100 h-200">
+        <div className="flex flex-col items-center bg-linear-to-t from-indigo-500 to-red-300  h-200">
             <h1 className="flex flex-col font-semibold text-5xl mt-10 mb-3">
                 URL Shortener
             </h1>
-            <h3 className="flex flex-col text-xl text-gray-500 mb-5">
+            <h3 className="flex flex-col text-xl text-black mb-5">
                 Shorten your long URls into compact, shareable links
             </h3>
             <form
@@ -28,6 +28,7 @@ export default function UrlForm() {
                         setError("No URL or Alias provided.");
                         console.error(error);
                     }
+
 
                     createAlias(url, alias)
                         .then((res) => {
@@ -85,14 +86,17 @@ export default function UrlForm() {
                     {error ? error : ""}
                 </FormHelperText>
 
-                {shortenedURL && (
-                    <div className="mt-4 p-4 bg-white text-black text-center border rounded-2xl">
-                        <h1 className="flex flex-col font-semibold text-left">Your Shortened URL: </h1>
-                        <Link href={`/${alias}`} className="flex flex-col text-left hover:text-gray-500">
-                            {shortenedURL}
-                        </Link>
-                    </div>
-                )}
+                {shortenedURL ?
+                    <>
+                        <div className="mt-4 p-4 bg-white text-black text-center border rounded-2xl">
+                            <h1 className="flex flex-col font-semibold text-left">Your Shortened URL: </h1>
+                            <Link href={`/${alias}`} target = "_blank" className="flex flex-col text-left hover:text-gray-500">
+                                {shortenedURL}
+                            </Link>
+                        </div>
+                    </>
+                    : ""
+                }
             </form>
         </div>
     );
