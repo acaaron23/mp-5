@@ -12,7 +12,7 @@ export default function UrlForm() {
     const [shortenedURL, setShortenedURL] = useState("");
 
     return (
-        <div className="flex flex-col items-center bg-linear-to-t from-indigo-500 to-red-300  h-200">
+        <div className="flex flex-col items-center w-full">
             <h1 className="flex flex-col font-semibold text-5xl mt-10 mb-3">
                 URL Shortener
             </h1>
@@ -20,7 +20,7 @@ export default function UrlForm() {
                 Shorten your long URls into compact, shareable links
             </h3>
             <form
-                className="w-3/4 rounded-2xl p-5 bg-white"
+                className="w-2xl rounded-2xl p-5 bg-white"
                 onSubmit={(e) => {
                     e.preventDefault();
 
@@ -68,7 +68,7 @@ export default function UrlForm() {
                     </h2>
                     <TextField
                         variant="outlined"
-                        sx={{ backgroundColor: "white", width: "40%" }}
+                        sx={{ backgroundColor: "white", width: "50%" }}
                         label="your-custom-alias"
                         value={alias}
                         required={true}
