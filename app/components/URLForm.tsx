@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button, FormHelperText, TextField } from "@mui/material";
 import createAlias from "@/app/lib/createAlias";
 import Link from "next/link";
+import checkURL from "@/app/lib/checkUrl";
 
 export default function UrlForm() {
     const [alias, setAlias] = useState("");
@@ -21,14 +22,19 @@ export default function UrlForm() {
             </h3>
             <form
                 className="w-2xl rounded-2xl p-5 bg-white"
-                onSubmit={(e) => {
+                onSubmit={async (e) => {
                     e.preventDefault();
 
                     if (!url || !alias) {
                         setError("No URL or Alias provided.");
-                        console.error(error);
+                        return;
                     }
 
+                    const validURL = await checkURL(url);
+                    if (!validURL) {
+                        setError("Invalid URL: Could not verify URL. Please try again.");
+                        return;
+                    }
 
                     createAlias(url, alias)
                         .then((res) => {
@@ -40,7 +46,8 @@ export default function UrlForm() {
                         });
                 }}
             >
-                <h1 className="flex flex-col font-bold text-2xl text-black">
+
+            <h1 className="flex flex-col font-bold text-2xl text-black">
                     Shorten a URL
                 </h1>
                 <h2 className="flex flex-col font-light text-xl text-gray-500 mb-5">
@@ -88,7 +95,7 @@ export default function UrlForm() {
 
                 {shortenedURL ?
                     <>
-                        <div className="mt-4 p-4 bg-white text-black text-center border rounded-2xl">
+                        <div className="mt-4 p-4 bg-white text-black text-center border border-black rounded-2xl">
                             <h1 className="flex flex-col font-semibold text-left">Your Shortened URL: </h1>
                             <Link href={`/${alias}`} target = "_blank" className="flex flex-col text-left hover:text-gray-500">
                                 {shortenedURL}
