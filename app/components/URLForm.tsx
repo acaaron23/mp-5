@@ -39,6 +39,7 @@ export default function UrlForm() {
                     createAlias(url, alias)
                         .then((res) => {
                             setShortenedURL(`http://localhost:3000/${res.alias}`);
+                            setError("");
                         })
                         .catch((err) => {
                             setError(err.message);
