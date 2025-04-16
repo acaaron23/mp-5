@@ -38,7 +38,7 @@ export default function UrlForm() {
 
                     createAlias(url, alias)
                         .then((res) => {
-                            setShortenedURL(`http://localhost:3000/${res.alias}`);
+                            setShortenedURL(`https://url-shortener-ac.vercel.app/${res.alias}`);
                             setError("");
                         })
                         .catch((err) => {
@@ -72,7 +72,7 @@ export default function UrlForm() {
                 </h1>
                 <div className="flex flex-row justify-left items-center w-full">
                     <h2 className="flex flex-row text-xl font-extralight mr-2">
-                        https://example.com/some/long/url/
+                        https://url-shortener-ac.vercel.app/
                     </h2>
                     <TextField
                         variant="outlined"
