@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import { Button, FormHelperText, TextField } from "@mui/material";
-import createAlias from "@/app/lib/createAlias";
 import Link from "next/link";
+import createAlias from "@/app/lib/createAlias";
 import checkURL from "@/app/lib/checkUrl";
+import getAlias from "@/app/lib/getAlias";
 
 export default function UrlForm() {
     const [alias, setAlias] = useState("");
@@ -36,13 +37,17 @@ export default function UrlForm() {
                         return;
                     }
 
+                    const checkAlias = await getAlias(alias);
+                    if (checkAlias){
+                        setError("Invalid alias: This alias already exists");
+                    }
+
                     createAlias(url, alias)
                         .then((res) => {
                             setShortenedURL(`https://url-shortener-ac.vercel.app/${res.alias}`);
                             setError("");
                         })
                         .catch((err) => {
-                            setError(err.message);
                             console.error(err);
                         });
                 }}

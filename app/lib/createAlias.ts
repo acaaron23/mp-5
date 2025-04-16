@@ -13,10 +13,6 @@ export default async function createAlias(
         alias: alias,
     };
 
-    if (!url || !alias){
-        throw new Error ("No URL or Alias provided");
-    }
-
     const checkAlias = await getAlias(alias);
     if (checkAlias){
         throw new Error ("Invalid alias: This alias already exists");
