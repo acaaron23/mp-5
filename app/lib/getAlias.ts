@@ -1,3 +1,5 @@
+"use server";
+
 import getCollection, { ALIAS_COLLECTION } from "@/db";
 
 export default async function getAlias(
