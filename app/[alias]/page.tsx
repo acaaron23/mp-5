@@ -1,5 +1,3 @@
-"use server";
-
 import {redirect} from "next/navigation";
 import getAlias from "@/app/lib/getAlias";
 
