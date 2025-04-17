@@ -6,12 +6,14 @@ import Link from "next/link";
 import createAlias from "@/app/lib/createAlias";
 import checkURL from "@/app/lib/checkUrl";
 import getAlias from "@/app/lib/getAlias";
+import CheckIcon from '@mui/icons-material/Check';
 
 export default function UrlForm() {
     const [alias, setAlias] = useState("");
     const [url, setURL] = useState("");
     const [error, setError] = useState("");
     const [shortenedURL, setShortenedURL] = useState("");
+    const [copied, setCopied] = useState(false);
 
     return (
         <div className="flex flex-col items-center w-full">
@@ -101,11 +103,20 @@ export default function UrlForm() {
 
                 {shortenedURL ?
                     <>
-                        <div className="mt-4 p-4 bg-white text-black text-center border border-black rounded-2xl">
-                            <h1 className="flex flex-col font-semibold text-left">Your Shortened URL: </h1>
-                            <Link href={`/${alias}`} target = "_blank" className="flex flex-col text-left hover:text-gray-500">
-                                {shortenedURL}
-                            </Link>
+                        <div className="mt-4 p-4 bg-white text-black text-center border border-gray-500 rounded-2xl">
+                            <h1 className="font-semibold text-left">Your Shortened URL: </h1>
+                            <div className="flex flex-row justify-between items-center w-full">
+                                <Link href={`/${alias}`} target = "_blank" className="flex flex-col text-left hover:text-gray-500">
+                                    {shortenedURL}
+                                </Link>
+                                <Button variant="outlined" sx={{ width: "10%", backgroundColor: "white" }}
+                                    onClick={() => {
+                                        navigator.clipboard.writeText(shortenedURL);
+                                        setCopied(true); }}
+                                >
+                                    {copied ? <CheckIcon/> : "Copy"}
+                                </Button>
+                            </div>
                         </div>
                     </>
                     : ""
